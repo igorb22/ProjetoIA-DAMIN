@@ -1,0 +1,36 @@
+﻿ - Conjunto de estados 
+ 	* Tabuleiro de damas 
+ 	* Grafo de Adjacencia construido a partir do tabuleiro - ver arquivo feito no jflap
+ - Estado inicial 
+ 	* Qualquer peça do tabuleiro que pode ser movida diagonalmente pra frente ou para trás
+ 	* Array de peças que estão no tabuleiro possíveis de serem movimentadas - Array dinâmico, mudam-se as peças a cada jogada
+ - Ações
+ 	* Movimentar uma peça diagonalmente uma casa para frente ou para tras
+ 	* Eliminar uma peça do oponente
+
+ - Modelo de trasição
+ 	* Dado um estado e uma ação, o jogo devolve um estado resultante. Ex: peça n no estado 1;1,movimenta-se diagonalmente uma casa para direita, o que resultará  no estado 1:3 da peça n; 		
+
+ - Teste de Objetivo
+ 	* Verificar se todas as peças do oponente foram eliminadas. 
+
+
+Números mais a esquerda a diferença é 7, mais a direita é nove
+O jogador 1, pode se movimentar da seguinte forma: indiceDaCasa + 7(esquerda - direita de quem joga) ou indiceDaCasa + 9(direita - esquerda de quem joga) - 
+se comer para tras: indiceDaCasa - 14(esquerda - direita de quem joga) ou indiceDaCasa - 18(direita - esquerda de quem joga)  
+
+
+Números mais a esquerda a diferença é 7, mais a direita é nove
+O jogador 2, pode se movimentar da seguinte forma: indiceDaCasa - 7(direita de quem joga) ou indiceDaCasa - 9(esquerda de quem joga) -
+se comer para tras: indiceDaCasa + 14(esquerda de quem joga) ou indiceDaCasa + 18(direita de quem joga)  
+
+
+Lógica pra delimitar as bordas do tabuleiro
+jogador 1 - 
+para os número da direita(esquerda de quem joga) - se o número divido por 8 tiver módulo 0 - ele não pode caminhar para direita 
+para os números da esquerda(direita de quem joga) - indiceDaCasa % 8 == 1 - não pode andar mais para esquerda 
+
+
+
+
+ 
