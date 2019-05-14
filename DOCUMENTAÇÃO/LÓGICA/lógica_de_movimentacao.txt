@@ -6,10 +6,10 @@
  	* Array de peças que estão no tabuleiro possíveis de serem movimentadas - Array dinâmico, mudam-se as peças a cada jogada
  - Ações
  	* Movimentar uma peça diagonalmente uma casa para frente ou para tras
- 	* Eliminar uma peça do oponente
+ 	* Eliminar uma peça do oponente - movimentando duas casas para frente ou para tras
 
  - Modelo de trasição
- 	* Dado um estado e uma ação, o jogo devolve um estado resultante. Ex: peça n no estado 1;1,movimenta-se diagonalmente uma casa para direita, o que resultará  no estado 1:3 da peça n; 		
+ 	* Dado um estado e uma ação, o jogo devolve um estado resultante. Ex: peça n no estado 2,movimenta-se diagonalmente uma casa para direita(esquerda de quem joga), o que resultará  no estado 9 da peça n; 		
 
  - Teste de Objetivo
  	* Verificar se todas as peças do oponente foram eliminadas. 
