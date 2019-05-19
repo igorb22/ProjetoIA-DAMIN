@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -13,16 +12,364 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<ImageButton> btnTabuleiro = new ArrayList<>();
-    private int casaAtual = -1,casaDestino = -1;
+    private int indexCasaAtual = -1,indexCasaDestino = -1;
+    private Tabuleiro[] tabuleiro = new Tabuleiro[32];
+
+    // variáveis auxiliáres
+    private int nCasa = 1,idPeca = 1,indiceArray = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LinearLayout l = findViewById(R.id.linear);
+        findViewById(R.id.linear);
 
-        // Toast.makeText(getBaseContext(),"RESULT: "+l.getChildAt(2).getId(),Toast.LENGTH_LONG).show();
+        pegaInstaciaDosBotoes();
+        preencheTabuleiro();
+        btnTabuleiro.clear();
 
+        // Setando o onClick das casas
+        tabuleiro[0].getBtnCasa().setOnClickListener(this);
+        tabuleiro[1].getBtnCasa().setOnClickListener(this);
+        tabuleiro[2].getBtnCasa().setOnClickListener(this);
+        tabuleiro[3].getBtnCasa().setOnClickListener(this);
+        tabuleiro[4].getBtnCasa().setOnClickListener(this);
+        tabuleiro[5].getBtnCasa().setOnClickListener(this);
+        tabuleiro[6].getBtnCasa().setOnClickListener(this);
+        tabuleiro[7].getBtnCasa().setOnClickListener(this);
+        tabuleiro[8].getBtnCasa().setOnClickListener(this);
+        tabuleiro[9].getBtnCasa().setOnClickListener(this);
+        tabuleiro[10].getBtnCasa().setOnClickListener(this);
+        tabuleiro[11].getBtnCasa().setOnClickListener(this);
+        tabuleiro[12].getBtnCasa().setOnClickListener(this);
+        tabuleiro[13].getBtnCasa().setOnClickListener(this);
+        tabuleiro[14].getBtnCasa().setOnClickListener(this);
+        tabuleiro[15].getBtnCasa().setOnClickListener(this);
+        tabuleiro[16].getBtnCasa().setOnClickListener(this);
+        tabuleiro[17].getBtnCasa().setOnClickListener(this);
+        tabuleiro[18].getBtnCasa().setOnClickListener(this);
+        tabuleiro[19].getBtnCasa().setOnClickListener(this);
+        tabuleiro[20].getBtnCasa().setOnClickListener(this);
+        tabuleiro[21].getBtnCasa().setOnClickListener(this);
+        tabuleiro[22].getBtnCasa().setOnClickListener(this);
+        tabuleiro[23].getBtnCasa().setOnClickListener(this);
+        tabuleiro[24].getBtnCasa().setOnClickListener(this);
+        tabuleiro[25].getBtnCasa().setOnClickListener(this);
+        tabuleiro[26].getBtnCasa().setOnClickListener(this);
+        tabuleiro[27].getBtnCasa().setOnClickListener(this);
+        tabuleiro[28].getBtnCasa().setOnClickListener(this);
+        tabuleiro[29].getBtnCasa().setOnClickListener(this);
+        tabuleiro[30].getBtnCasa().setOnClickListener(this);
+        tabuleiro[31].getBtnCasa().setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn1:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[0].getNumCasa()+
+                        ",possui peca: "+tabuleiro[0].isPossuiPeca()+","+tabuleiro[0].getNumPeca()
+                       +" INDICE: "+indiceArray ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(0);
+
+                break;
+            case R.id.btn3:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[1].getNumCasa()+
+                                ",possui peca: "+tabuleiro[1].isPossuiPeca()+","+tabuleiro[1].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(1);
+
+                break;
+            case R.id.btn5:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[2].getNumCasa()+
+                                ",possui peca: "+tabuleiro[2].isPossuiPeca()+","+tabuleiro[2].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(2);
+
+                break;
+            case R.id.btn7:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[3].getNumCasa()+
+                                ",possui peca: "+tabuleiro[3].isPossuiPeca()+","+tabuleiro[3].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+
+                marcaCasaDoTabuleiro(3);
+
+                break;
+            case R.id.btn10:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[4].getNumCasa()+
+                                ",possui peca: "+tabuleiro[4].isPossuiPeca()+","+tabuleiro[4].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(4);
+
+                break;
+            case R.id.btn12:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[5].getNumCasa()+
+                                ",possui peca: "+tabuleiro[5].isPossuiPeca()+","+tabuleiro[5].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(5);
+
+                break;
+            case R.id.btn14:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[6].getNumCasa()+
+                                ",possui peca: "+tabuleiro[6].isPossuiPeca()+","+tabuleiro[6].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(6);
+
+                break;
+            case R.id.btn16:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[7].getNumCasa()+
+                                ",possui peca: "+tabuleiro[7].isPossuiPeca()+","+tabuleiro[7].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(7);
+
+                break;
+            case R.id.btn17:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[8].getNumCasa()+
+                                ",possui peca: "+tabuleiro[8].isPossuiPeca()+","+tabuleiro[8].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(8);
+
+                break;
+            case R.id.btn19:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[9].getNumCasa()+
+                                ",possui peca: "+tabuleiro[9].isPossuiPeca()+","+tabuleiro[9].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(9);
+
+                break;
+            case R.id.btn21:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[10].getNumCasa()+
+                                ",possui peca: "+tabuleiro[10].isPossuiPeca()+","+tabuleiro[10].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(10);
+
+                break;
+            case R.id.btn23:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[11].getNumCasa()+
+                                ",possui peca: "+tabuleiro[11].isPossuiPeca()+","+tabuleiro[11].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(11);
+
+                break;
+            case R.id.btn26:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[12].getNumCasa()+
+                                ",possui peca: "+tabuleiro[12].isPossuiPeca()+","+tabuleiro[12].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(12);
+
+                break;
+            case R.id.btn28:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[13].getNumCasa()+
+                                ",possui peca: "+tabuleiro[13].isPossuiPeca()+","+tabuleiro[13].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(13);
+
+                break;
+            case R.id.btn30: //18
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[14].getNumCasa()+
+                                ",possui peca: "+tabuleiro[14].isPossuiPeca()+","+tabuleiro[14].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(14);
+
+                break;
+            case R.id.btn32:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[15].getNumCasa()+
+                                ",possui peca: "+tabuleiro[15].isPossuiPeca()+","+tabuleiro[15].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(15);
+
+                break;
+            case R.id.btn33:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[16].getNumCasa()+
+                                ",possui peca: "+tabuleiro[16].isPossuiPeca()+","+tabuleiro[16].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(16);
+
+                break;
+            case R.id.btn35:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[17].getNumCasa()+
+                                ",possui peca: "+tabuleiro[17].isPossuiPeca()+","+tabuleiro[17].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(17);
+
+                break;
+            case R.id.btn37:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[18].getNumCasa()+
+                                ",possui peca: "+tabuleiro[18].isPossuiPeca()+","+tabuleiro[18].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(18);
+
+                break;
+            case R.id.btn39:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[19].getNumCasa()+
+                                ",possui peca: "+tabuleiro[19].isPossuiPeca()+","+tabuleiro[19].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(19);
+
+                break;
+            case R.id.btn42:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[20].getNumCasa()+
+                                ",possui peca: "+tabuleiro[20].isPossuiPeca()+","+tabuleiro[20].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(20);
+
+                break;
+            case R.id.btn44:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[21].getNumCasa()+
+                                ",possui peca: "+tabuleiro[21].isPossuiPeca()+","+tabuleiro[21].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(21);
+
+                break;
+            case R.id.btn46:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[22].getNumCasa()+
+                                ",possui peca: "+tabuleiro[22].isPossuiPeca()+","+tabuleiro[22].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(22);
+
+                break;
+            case R.id.btn48:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[23].getNumCasa()+
+                                ",possui peca: "+tabuleiro[23].isPossuiPeca()+","+tabuleiro[23].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(23);
+
+                break;
+            case R.id.btn49:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[24].getNumCasa()+
+                                ",possui peca: "+tabuleiro[24].isPossuiPeca()+","+tabuleiro[24].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(24);
+
+                break;
+            case R.id.btn51:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[25].getNumCasa()+
+                                ",possui peca: "+tabuleiro[25].isPossuiPeca()+","+tabuleiro[25].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(25);
+
+                break;
+            case R.id.btn53:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[26].getNumCasa()+
+                                ",possui peca: "+tabuleiro[26].isPossuiPeca()+","+tabuleiro[26].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(26);
+
+                break;
+            case R.id.btn55:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[27].getNumCasa()+
+                                ",possui peca: "+tabuleiro[27].isPossuiPeca()+","+tabuleiro[27].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(27);
+
+                break;
+            case R.id.btn58:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[28].getNumCasa()+
+                                ",possui peca: "+tabuleiro[28].isPossuiPeca()+","+tabuleiro[28].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(28);
+
+                break;
+            case R.id.btn60:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[29].getNumCasa()+
+                                ",possui peca: "+tabuleiro[29].isPossuiPeca()+","+tabuleiro[29].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(29);
+
+                break;
+            case R.id.btn62:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[30].getNumCasa()+
+                                ",possui peca: "+tabuleiro[30].isPossuiPeca()+","+tabuleiro[30].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(30);
+
+                break;
+            case R.id.btn64:
+                Toast.makeText(getBaseContext(),"casa: "+tabuleiro[31].getNumCasa()+
+                                ",possui peca: "+tabuleiro[31].isPossuiPeca()+","+tabuleiro[31].getNumPeca()
+                        ,Toast.LENGTH_LONG).show();
+                marcaCasaDoTabuleiro(31);
+                break;
+        }
+    }
+
+
+    public void marcaCasaDoTabuleiro( int posArray){
+        if (indexCasaAtual == -1){
+            tabuleiro[posArray].getBtnCasa().setBackgroundColor(Color.rgb(105,105,105));
+            indexCasaAtual = posArray;
+        } else if (indexCasaDestino == -1){
+            tabuleiro[posArray].getBtnCasa().setBackgroundColor(Color.rgb(105,105,105));
+            indexCasaDestino = posArray;
+            verificaJogada();
+        }
+    }
+
+    public void verificaJogada() {
+        if ((tabuleiro[indexCasaAtual].getNumCasa()-7) == tabuleiro[indexCasaDestino].getNumCasa()){
+            if (!tabuleiro[indexCasaDestino].isPossuiPeca())
+                realizaJogada();
+            else
+                Toast.makeText(this, "Jogada não pode ser efetuada", Toast.LENGTH_SHORT).show();
+        } else if ((tabuleiro[indexCasaAtual].getNumCasa()-9) == tabuleiro[indexCasaDestino].getNumCasa()){
+            if (!tabuleiro[indexCasaDestino].isPossuiPeca())
+                realizaJogada();
+            else
+                Toast.makeText(this, "Jogada não pode ser efetuada", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "impossivel efetuar jogada", Toast.LENGTH_SHORT).show();
+        }
+
+        resetaBackground(tabuleiro);
+    }
+
+    public void realizaJogada(){
+        int peca = tabuleiro[indexCasaAtual].getNumPeca();
+        tabuleiro[indexCasaAtual].setNumPeca(0);
+        tabuleiro[indexCasaAtual].setPossuiPeca(false);
+        tabuleiro[indexCasaAtual].getBtnCasa().setImageResource(android.R.color.transparent);
+        // --------------------------------------------------
+        tabuleiro[indexCasaDestino].setPossuiPeca(true);
+        tabuleiro[indexCasaDestino].setNumPeca(peca);
+        tabuleiro[indexCasaDestino].getBtnCasa().setImageResource(R.drawable.peca_rosa);
+    }
+
+    public void resetaBackground(Tabuleiro[] t){
+        for (int i = 0; i < t.length;i++){
+            t[i].getBtnCasa().setBackgroundColor(Color.rgb(0,0,0));
+        }
+
+        indexCasaAtual = -1;
+        indexCasaDestino = -1;
+    }
+
+    public void preencheTabuleiro(){
+        for (int i = 0; i < 32;i++){
+            if ( nCasa == 7 || nCasa == 23 || nCasa == 39 || nCasa == 55 ) {
+                setaCasa();
+                nCasa += 3;
+            } else if (nCasa == 16 || nCasa == 32 || nCasa == 48 || nCasa ==64){
+                setaCasa();
+                nCasa += 1;
+            } else{
+                setaCasa();
+                nCasa += 2;
+            }
+        }
+    }
+
+    public void setaCasa() {
+        if (nCasa < 26 || nCasa >= 42) {
+            tabuleiro[indiceArray] = new Tabuleiro(nCasa, true, idPeca, btnTabuleiro.get(indiceArray));
+            idPeca++;
+            indiceArray++;
+        } else {
+            tabuleiro[indiceArray] = new Tabuleiro(nCasa, false, 0, btnTabuleiro.get(indiceArray));
+            indiceArray++;
+        }
+    }
+
+    public void pegaInstaciaDosBotoes(){
         /* Instancia provisória */
         ImageButton btn = findViewById(R.id.btn1);
         btnTabuleiro.add(btn);
@@ -88,466 +435,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnTabuleiro.add(btn);
         btn = findViewById(R.id.btn64);
         btnTabuleiro.add(btn);
-
-
-        btnTabuleiro.get(0).setOnClickListener(this);
-        btnTabuleiro.get(1).setOnClickListener(this);
-        btnTabuleiro.get(2).setOnClickListener(this);
-        btnTabuleiro.get(3).setOnClickListener(this);
-        btnTabuleiro.get(4).setOnClickListener(this);
-        btnTabuleiro.get(5).setOnClickListener(this);
-        btnTabuleiro.get(6).setOnClickListener(this);
-        btnTabuleiro.get(7).setOnClickListener(this);
-        btnTabuleiro.get(8).setOnClickListener(this);
-        btnTabuleiro.get(9).setOnClickListener(this);
-        btnTabuleiro.get(10).setOnClickListener(this);
-        btnTabuleiro.get(11).setOnClickListener(this);
-        btnTabuleiro.get(12).setOnClickListener(this);
-        btnTabuleiro.get(13).setOnClickListener(this);
-        btnTabuleiro.get(14).setOnClickListener(this);
-        btnTabuleiro.get(15).setOnClickListener(this);
-        btnTabuleiro.get(16).setOnClickListener(this);
-        btnTabuleiro.get(17).setOnClickListener(this);
-        btnTabuleiro.get(18).setOnClickListener(this);
-        btnTabuleiro.get(19).setOnClickListener(this);
-        btnTabuleiro.get(20).setOnClickListener(this);
-        btnTabuleiro.get(21).setOnClickListener(this);
-        btnTabuleiro.get(22).setOnClickListener(this);
-        btnTabuleiro.get(23).setOnClickListener(this);
-        btnTabuleiro.get(24).setOnClickListener(this);
-        btnTabuleiro.get(25).setOnClickListener(this);
-        btnTabuleiro.get(26).setOnClickListener(this);
-        btnTabuleiro.get(27).setOnClickListener(this);
-        btnTabuleiro.get(28).setOnClickListener(this);
-        btnTabuleiro.get(29).setOnClickListener(this);
-        btnTabuleiro.get(30).setOnClickListener(this);
-        btnTabuleiro.get(31).setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn1:
-                Toast.makeText(getBaseContext(),"Teclando na casa1",Toast.LENGTH_LONG).show();
-                if (casaAtual == -1){
-                    btnTabuleiro.get(0).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 1;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(0).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 1;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn3:
-                Toast.makeText(getBaseContext(),"Teclando na casa3",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(1).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 3;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(1).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 3;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn5:
-                Toast.makeText(getBaseContext(),"Teclando na casa5",Toast.LENGTH_LONG).show();
-                btnTabuleiro.get(2).setBackgroundColor(Color.rgb(105,105,105));
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(2).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 5;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(2).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 5;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn7:
-                Toast.makeText(getBaseContext(),"Teclando na casa7",Toast.LENGTH_LONG).show();
-
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(3).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 7;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(3).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 7;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn10:
-                Toast.makeText(getBaseContext(),"Teclando na casa10",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(4).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 10;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(4).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 10;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn12:
-                Toast.makeText(getBaseContext(),"Teclando na casa12",Toast.LENGTH_LONG).show();
-                if (casaAtual == -1){
-                    btnTabuleiro.get(5).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 12;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(5).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 12;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn14:
-                Toast.makeText(getBaseContext(),"Teclando na casa14",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(6).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 14;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(6).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 14;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-
-                break;
-            case R.id.btn16:
-                Toast.makeText(getBaseContext(),"Teclando na casa116",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(7).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 16;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(7).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 16;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-
-                break;
-            case R.id.btn17:
-                Toast.makeText(getBaseContext(),"Teclando na casa17",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(8).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 17;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(8).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 17;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn19:
-                Toast.makeText(getBaseContext(),"Teclando na casa19",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(9).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 19;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(9).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 19;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn21:
-                Toast.makeText(getBaseContext(),"Teclando na casa21",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(10).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 21;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(10).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 21;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn23:
-                Toast.makeText(getBaseContext(),"Teclando na casa23",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(11).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 23;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(11).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 23;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn26:
-                Toast.makeText(getBaseContext(),"Teclando na casa26",Toast.LENGTH_LONG).show();
-                if (casaAtual == -1){
-                    btnTabuleiro.get(12).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 26;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(12).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 26;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn28:
-                Toast.makeText(getBaseContext(),"Teclando na casa28",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(13).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 28;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(13).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 28;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn30: //18
-                Toast.makeText(getBaseContext(),"Teclando na casa30",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(14).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 30;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(14).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 20;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-
-                break;
-            case R.id.btn32:
-                Toast.makeText(getBaseContext(),"Teclando na casa32",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(15).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 32;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(15).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 32;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn33:
-                Toast.makeText(getBaseContext(),"Teclando na casa33",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(16).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 33;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(16).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 33;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn35:
-                Toast.makeText(getBaseContext(),"Teclando na casa38",Toast.LENGTH_LONG).show();
-                if (casaAtual == -1){
-                    btnTabuleiro.get(17).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 35;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(17).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 35;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn37:
-                Toast.makeText(getBaseContext(),"Teclando na casa37",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(18).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 37;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(18).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 37;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-
-
-                break;
-            case R.id.btn39:
-                Toast.makeText(getBaseContext(),"Teclando na casa39",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(19).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 39;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(19).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 39;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn42:
-                Toast.makeText(getBaseContext(),"Teclando na casa42",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(20).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 42;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(20).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 42;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn44:
-                Toast.makeText(getBaseContext(),"Teclando na casa44",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(21).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 44;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(21).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 44;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn46:
-                Toast.makeText(getBaseContext(),"Teclando na casa46",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(22).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 46;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(22).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 46;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn48:
-                Toast.makeText(getBaseContext(),"Teclando na casa48",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(23).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 48;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(23).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 48;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn49:
-                Toast.makeText(getBaseContext(),"Teclando na casa49",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(24).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 49;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(24).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 49;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn51:
-                Toast.makeText(getBaseContext(),"Teclando na casa51",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(25).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 51;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(25).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 51;
-                } else
-                    resetaBackground(btnTabuleiro);
-                break;
-            case R.id.btn53:
-                Toast.makeText(getBaseContext(),"Teclando na casa53",Toast.LENGTH_LONG).show();
-                if (casaAtual == -1){
-                    btnTabuleiro.get(26).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 53;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(26).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 53;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn55:
-                Toast.makeText(getBaseContext(),"Teclando na casa55",Toast.LENGTH_LONG).show();
-                btnTabuleiro.get(27).setBackgroundColor(Color.rgb(105,105,105));
-                if (casaAtual == -1){
-                    btnTabuleiro.get(27).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 55;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(27).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 55;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn58:
-                Toast.makeText(getBaseContext(),"Teclando na casa58",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(28).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 58;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(28).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 58;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn60:
-                Toast.makeText(getBaseContext(),"Teclando na casa60",Toast.LENGTH_LONG).show();
-                btnTabuleiro.get(29).setBackgroundColor(Color.rgb(105,105,105));
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(29).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 60;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(29).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 60;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn62:
-                Toast.makeText(getBaseContext(),"Teclando na casa62",Toast.LENGTH_LONG).show();
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(30).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 62;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(30).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 62;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-            case R.id.btn64:
-                Toast.makeText(getBaseContext(),"Teclando na casa64",Toast.LENGTH_LONG).show();
-                btnTabuleiro.get(31).setBackgroundColor(Color.rgb(105,105,105));
-
-                if (casaAtual == -1){
-                    btnTabuleiro.get(31).setBackgroundColor(Color.rgb(105,105,105));
-                    casaAtual = 64;
-                } else if (casaDestino == -1){
-                    btnTabuleiro.get(31).setBackgroundColor(Color.rgb(105,105,105));
-                    casaDestino = 64;
-                } else
-                    resetaBackground(btnTabuleiro);
-
-                break;
-        }
-    }
-
-
-
-    public void resetaBackground(ArrayList<ImageButton> img){
-        for (int i = 0; i < img.size();i++){
-            img.get(i).setBackgroundColor(Color.rgb(0,0,0));
-        }
-        casaAtual = -1;
-        casaDestino = -1;
     }
 }
