@@ -5,7 +5,7 @@
  	* Qualquer peça do tabuleiro que pode ser movida diagonalmente pra frente ou para trás
  	* Array de peças que estão no tabuleiro possíveis de serem movimentadas - Array dinâmico, mudam-se as peças a cada jogada
  - Ações
- 	* Movimentar uma peça diagonalmente uma casa para frente ou para tras
+ 	* Movimentar uma peça diagonalmente uma casa para frente
  	* Eliminar uma peça do oponente - movimentando duas casas para frente ou para tras
 
  - Modelo de trasição
